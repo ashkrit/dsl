@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * StateMachine is is made of State, Event & Message
+ * Each Machine start with initial state and as event are processed it transition to next state
  * <pre>
  *  StateMachine<String, String, String> cbMachine = machine("Circuit Breaker", machine -> {
  *             machine.startWith("OPEN");
