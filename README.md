@@ -1,7 +1,7 @@
 # dsl
 Domain Specific Language - Contains example of internal DSL.
 
-## State Machine DSl - Circuit Breaker
+## State Machine DSL - Circuit Breaker
 ```
  StateMachine<String, String, String> cbMachine = machine("Circuit Breaker", machine -> {
             machine.startWith("OPEN");
