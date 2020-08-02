@@ -34,14 +34,14 @@ public class Constraint<T> {
         return this;
     }
 
-    public Constraint<T> lt(String field, int value) {
-        predicates.add(r -> (Integer) schema.fieldValue(field, r) < value);
+    public Constraint<T> lt(String field, double value) {
+        predicates.add(r -> (double) schema.fieldValue(field, r) < value);
         return this;
     }
 
     public Constraint<T> between(String field, long from, long to) {
         predicates.add(r -> {
-            Integer value = (Integer) schema.fieldValue(field, r);
+            long value = (long) schema.fieldValue(field, r);
             return value >= from && value <= to;
         });
         return this;
