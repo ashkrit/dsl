@@ -15,7 +15,7 @@ public class StateMachine<State, Event, Message> {
         this.machineName = machineName;
     }
 
-    public static <State, Event, Message> StateMachine<State, Event, Message> create(String machineName, MachineEvent<State, Event, Message> me) {
+    public static <State, Event, Message> StateMachine<State, Event, Message> machine(String machineName, MachineEvent<State, Event, Message> me) {
         StateMachine<State, Event, Message> machine = new StateMachine<>(machineName);
         me.apply(machine);
         return machine;
