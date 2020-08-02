@@ -1,4 +1,4 @@
-package org.domainspecific.dsl;
+package org.domainspecific.dsl.statemachine;
 
 import org.domainspecific.dsl.statemachine.StateMachine;
 import org.junit.jupiter.api.Test;
