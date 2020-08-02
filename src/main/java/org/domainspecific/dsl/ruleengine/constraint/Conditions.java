@@ -1,7 +1,7 @@
 package org.domainspecific.dsl.ruleengine.constraint;
 
-import org.domainspecific.dsl.ruleengine.DecisionSystem;
+import org.domainspecific.dsl.ruleengine.RuleEngine;
 
 public interface Conditions<T> {
-    void apply(DecisionSystem<T> ds);
+    void apply(RuleEngine<T> ds);
 }

@@ -2,11 +2,11 @@ package org.domainspecific.dsl.ruleengine;
 
 import org.junit.jupiter.api.Test;
 
-import static org.domainspecific.dsl.ruleengine.DecisionSystem.decisionSystem;
+import static org.domainspecific.dsl.ruleengine.RuleEngine.decisionSystem;
 import static org.domainspecific.dsl.ruleengine.RuleSchema.schema;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DecisionSystemTest {
+public class RuleEngineTest {
 
     RuleSchema<FXTransaction> tradeSchema = schema("Trade", schema -> {
         schema.attribute("source", FXTransaction::getSource);
@@ -20,7 +20,7 @@ public class DecisionSystemTest {
     @Test
     public void simple_rule_engine() {
 
-        DecisionSystem<FXTransaction> ds = decisionSystem("FX Transaction", tradeSchema, s -> {
+        RuleEngine<FXTransaction> ds = decisionSystem("FX Transaction", tradeSchema, s -> {
 
             s.rule("High Transfer discount", condition -> {
                 condition
@@ -48,7 +48,7 @@ public class DecisionSystemTest {
     @Test
     public void multiple_rule_engine() {
 
-        DecisionSystem<FXTransaction> ds = decisionSystem("FX Transaction", tradeSchema, s -> {
+        RuleEngine<FXTransaction> ds = decisionSystem("FX Transaction", tradeSchema, s -> {
 
             s.rule("High Transfer discount", condition -> {
                 condition

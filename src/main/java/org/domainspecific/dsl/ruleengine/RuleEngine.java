@@ -7,19 +7,19 @@ import org.domainspecific.dsl.ruleengine.constraint.Constraints;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DecisionSystem<T> {
+public class RuleEngine<T> {
 
     private final String name;
     private final RuleSchema<T> schema;
     private final List<Constraint<T>> constraints = new ArrayList<>();
 
-    public DecisionSystem(String name, RuleSchema<T> schema) {
+    public RuleEngine(String name, RuleSchema<T> schema) {
         this.name = name;
         this.schema = schema;
     }
 
-    public static <T> DecisionSystem<T> decisionSystem(String name, RuleSchema<T> schema, Conditions<T> conditions) {
-        DecisionSystem<T> ds = new DecisionSystem<>(name, schema);
+    public static <T> RuleEngine<T> decisionSystem(String name, RuleSchema<T> schema, Conditions<T> conditions) {
+        RuleEngine<T> ds = new RuleEngine<>(name, schema);
         conditions.apply(ds);
         return ds;
     }
