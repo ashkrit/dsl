@@ -18,7 +18,7 @@ public class DecisionSystem<T> {
         this.schema = schema;
     }
 
-    public static <T> DecisionSystem<T> create(String name, RuleSchema<T> schema, Conditions<T> conditions) {
+    public static <T> DecisionSystem<T> decisionSystem(String name, RuleSchema<T> schema, Conditions<T> conditions) {
         DecisionSystem<T> ds = new DecisionSystem<>(name, schema);
         conditions.apply(ds);
         return ds;

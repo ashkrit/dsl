@@ -2,30 +2,37 @@ package org.domainspecific.dsl.ruleengine;
 
 import org.junit.jupiter.api.Test;
 
+import static org.domainspecific.dsl.ruleengine.DecisionSystem.decisionSystem;
 import static org.domainspecific.dsl.ruleengine.RuleSchema.schema;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DecisionSystemTest {
 
+    RuleSchema<FXTransaction> tradeSchema = schema("Trade", schema -> {
+        schema.attribute("source", FXTransaction::getSource);
+        schema.attribute("target", FXTransaction::getTarget);
+        schema.attribute("amount", FXTransaction::getAmount);
+        schema.attribute("date", FXTransaction::getTransactionDate);
+        schema.attribute("bankCode", FXTransaction::getBankCode);
+        schema.attribute("accountNo", FXTransaction::getAccountNum);
+    });
+
     @Test
     public void simple_rule_engine() {
 
-        RuleSchema<FXTransaction> tradeSchema = schema("Trade", schema -> {
-            schema.attribute("source", FXTransaction::getSource);
-            schema.attribute("target", FXTransaction::getTarget);
-            schema.attribute("amount", FXTransaction::getAmount);
-            schema.attribute("date", FXTransaction::getTransactionDate);
-            schema.attribute("bankCode", FXTransaction::getBankCode);
-            schema.attribute("accountNo", FXTransaction::getAccountNum);
-        });
+        DecisionSystem<FXTransaction> ds = decisionSystem("FX Transaction", tradeSchema, s -> {
 
-        DecisionSystem<FXTransaction> ds = DecisionSystem.create("FX Transaction", tradeSchema, s -> {
-            s.rule("High Transfer discount", c -> {
-                c
+            s.rule("High Transfer discount", condition -> {
+                condition
                         .gt("amount", 1000d)
-                        .action((rule, row) -> row.setDiscount(2.0d));
+                        .action((rule, row) -> {
+                            row.setDiscount(2.0d);
+                            System.out.println(String.format("qualified for rule '%s' ", rule));
+                        });
 
             });
+
+
         });
 
         FXTransaction tran = new FXTransaction(
