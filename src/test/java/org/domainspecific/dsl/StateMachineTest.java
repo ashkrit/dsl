@@ -27,7 +27,7 @@ public class StateMachineTest {
 
 
         cbMachine.process("connect", "https://my.superservice.com");
-        assertEquals("OPEN", cbMachine.getCurrentState());
+        assertEquals("OPEN", cbMachine.currentState());
     }
 
 
@@ -56,7 +56,7 @@ public class StateMachineTest {
         IntStream.range(0, 5)
                 .forEach($ -> cbMachine.process("connect", "https://my.superservice.com"));
 
-        assertEquals("CLOSED", cbMachine.getCurrentState());
+        assertEquals("CLOSED", cbMachine.currentState());
 
     }
 
@@ -91,10 +91,10 @@ public class StateMachineTest {
         cbMachine.process("connect", "https://my.superservice.com");
         cbMachine.process("re-connect", "https://my.superservice.com");
 
-        assertEquals("HALF-OPEN", cbMachine.getCurrentState());
+        assertEquals("HALF-OPEN", cbMachine.currentState());
 
         cbMachine.process("re-open", "https://my.superservice.com");
-        assertEquals("OPEN", cbMachine.getCurrentState());
+        assertEquals("OPEN", cbMachine.currentState());
 
     }
 

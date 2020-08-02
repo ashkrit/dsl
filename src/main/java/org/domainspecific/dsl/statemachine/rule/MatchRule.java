@@ -1,15 +1,15 @@
-package org.domainspecific.dsl.statemachine;
+package org.domainspecific.dsl.statemachine.rule;
 
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
 public class MatchRule<State, Event, Message> {
-    final State preState;
-    final Event currentEvent;
-    final Consumer<Message> processor;
-    final Optional<State> nextState;
-    final Optional<State> failedState;
+    public final State preState;
+    public final Event currentEvent;
+    public final Consumer<Message> processor;
+    public final Optional<State> nextState;
+    public final Optional<State> failedState;
 
     public MatchRule(State preState, Event currentEvent, Consumer<Message> processor, Optional<State> nextState, Optional<State> failedState) {
         this.preState = preState;

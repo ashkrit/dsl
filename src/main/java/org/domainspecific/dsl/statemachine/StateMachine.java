@@ -1,9 +1,10 @@
 package org.domainspecific.dsl.statemachine;
 
+import org.domainspecific.dsl.statemachine.rule.MatchRule;
+import org.domainspecific.dsl.statemachine.rule.MatchRules;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Consumer;
 
 public class StateMachine<State, Event, Message> {
     private final String machineName;
@@ -26,7 +27,7 @@ public class StateMachine<State, Event, Message> {
         rule.apply(r);
     }
 
-    public State getCurrentState() {
+    public State currentState() {
         return currentState;
     }
 
@@ -57,21 +58,4 @@ public class StateMachine<State, Event, Message> {
     }
 
 
-    public static class MatchRules<State, Event, Message> {
-        private final List<MatchRule> rules;
-        private final State preState;
-
-        public MatchRules(List<MatchRule> rules, State preState) {
-            this.preState = preState;
-            this.rules = rules;
-        }
-
-        public void when(Event currentEvent, Consumer<Message> processor, State nextState, State failed) {
-            rules.add(new MatchRule<>(preState, currentEvent, processor, Optional.ofNullable(nextState), Optional.ofNullable(failed)));
-        }
-
-        public void when(Event currentEvent, Consumer<Message> processor, State nextState) {
-            when(currentEvent, processor, nextState, null);
-        }
-    }
 }
