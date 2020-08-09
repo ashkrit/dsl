@@ -1,6 +1,6 @@
 package org.domainspecific.dsl.statemachine;
 
-import org.domainspecific.dsl.statemachine.StateMachine;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;
@@ -9,12 +9,15 @@ import java.util.stream.IntStream;
 import static org.domainspecific.dsl.statemachine.StateMachine.machine;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("StateMachine spec")
 public class StateMachineTest {
 
 
     @Test
+    @DisplayName("Circuit breaker - remain open when call is successful")
     public void circuit_breaker_remains_open_when_call_is_successful() {
-        Consumer<String> noOp = s -> { };
+        Consumer<String> noOp = s -> {
+        };
 
         StateMachine<String, String, String> cbMachine = machine("Circuit Breaker", m -> {
             m.startWith("OPEN");
@@ -32,6 +35,7 @@ public class StateMachineTest {
 
 
     @Test
+    @DisplayName("Circuit breaker closes when call to service fail")
     public void circuit_breaker_close_when_call_is_not_successful() {
         Consumer<String> failOp = s -> {
             throw new RuntimeException("Something went wrong");
@@ -61,6 +65,7 @@ public class StateMachineTest {
     }
 
     @Test
+    @DisplayName("Circuit breaker is half open when 1 call goes through")
     public void circuit_breaker_half_open_when_1_call_successful() {
         Consumer<String> failOp = s -> {
             throw new RuntimeException("Something went wrong");
@@ -75,13 +80,17 @@ public class StateMachineTest {
             });
 
             machine.at("CLOSED", rule -> {
-                rule.when("connect", s -> { }, "CLOSED");
-                rule.when("re-connect", s -> { }, "HALF-OPEN");
+                rule.when("connect", s -> {
+                }, "CLOSED");
+                rule.when("re-connect", s -> {
+                }, "HALF-OPEN");
             });
 
             machine.at("HALF-OPEN", rule -> {
-                rule.when("connect", s -> { }, "CLOSED");
-                rule.when("re-open", s -> { }, "OPEN");
+                rule.when("connect", s -> {
+                }, "CLOSED");
+                rule.when("re-open", s -> {
+                }, "OPEN");
 
             });
 
@@ -97,6 +106,5 @@ public class StateMachineTest {
         assertEquals("OPEN", cbMachine.currentState());
 
     }
-
 
 }

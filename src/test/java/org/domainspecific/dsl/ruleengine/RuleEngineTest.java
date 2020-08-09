@@ -1,11 +1,13 @@
 package org.domainspecific.dsl.ruleengine;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.domainspecific.dsl.ruleengine.RuleEngine.decisionSystem;
 import static org.domainspecific.dsl.ruleengine.RuleSchema.schema;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("Rule engine spec")
 public class RuleEngineTest {
 
     RuleSchema<FXTransaction> tradeSchema = schema("Trade", schema -> {
@@ -18,6 +20,7 @@ public class RuleEngineTest {
     });
 
     @Test
+    @DisplayName("Rule engine with single rule")
     public void simple_rule_engine() {
 
         RuleEngine<FXTransaction> ds = decisionSystem("FX Transaction", tradeSchema, s -> {
@@ -46,7 +49,8 @@ public class RuleEngineTest {
 
 
     @Test
-    public void multiple_rule_engine() {
+    @DisplayName("Rule engine with multiple rules")
+    public void rule_engine_with_multiple_rules() {
 
         RuleEngine<FXTransaction> ds = decisionSystem("FX Transaction", tradeSchema, s -> {
 
@@ -75,11 +79,11 @@ public class RuleEngineTest {
         });
 
         FXTransaction tran1 = new FXTransaction(
-                "SGD", "INR", 5000, 20200801, "ICICIBANK", "1111-222-6543");
+                "SGD", "INR", 5000, 20200801, "SafeBANK", "1111-222-6543");
         FXTransaction tran2 = new FXTransaction(
-                "SGD", "INR", 800, 20200801, "ICICIBANK", "1111-222-6543");
+                "SGD", "INR", 800, 20200801, "SafeBANK", "1111-222-6543");
         FXTransaction tran3 = new FXTransaction(
-                "SGD", "INR", 5000, 20200806, "ICICIBANK", "1111-222-6543");
+                "SGD", "INR", 5000, 20200806, "SafeBANK", "1111-222-6543");
 
 
         ds.process(tran1);
@@ -91,6 +95,5 @@ public class RuleEngineTest {
         assertEquals(5.0, tran3.getDiscount());
 
     }
-
 
 }

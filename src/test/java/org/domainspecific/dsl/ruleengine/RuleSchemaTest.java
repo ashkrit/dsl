@@ -1,15 +1,18 @@
 package org.domainspecific.dsl.ruleengine;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.domainspecific.dsl.ruleengine.RuleSchema.schema;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("Rule engine schema spec")
 public class RuleSchemaTest {
 
     @Test
+    @DisplayName("Register Schema fields")
     public void register_schema_fields() {
 
         RuleSchema<Trade> tradeSchema = schema("Trade", schema -> {
@@ -27,6 +30,7 @@ public class RuleSchemaTest {
     }
 
     @Test
+    @DisplayName("Complain for invalid field.")
     public void throws_error_for_invalid_field() {
 
         RuleSchema<Trade> tradeSchema = schema("Trade", schema -> {
@@ -37,6 +41,7 @@ public class RuleSchemaTest {
 
 
     @Test
+    @DisplayName("Handle null data row.")
     public void return_null_value_for_null_row() {
 
         RuleSchema<Trade> tradeSchema = schema("Trade", schema -> {
