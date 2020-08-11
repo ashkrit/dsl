@@ -1,7 +1,10 @@
 # dsl
 Domain Specific Language - Contains example of internal DSL.
 
-Blog post - https://ashkrit.blogspot.com/2020/08/speak-language-of-domain.html explain about internal DSL
+Blog post on DSL
+
+https://ashkrit.blogspot.com/2020/08/speak-language-of-domain.html
+http://ashkrit.blogspot.com/2020/08/speak-language-of-domain-part-2.html
 
 ## State Machine DSL - Circuit Breaker
 ```

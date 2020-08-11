@@ -22,7 +22,6 @@ public class FXRuleEngineCompilerApp {
         System.out.format("Rule Name %s \n", rules.name);
         System.out.format("Rules %s \n", rules.constraints);
 
-
     }
 
 }
