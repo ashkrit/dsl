@@ -5,7 +5,6 @@ import org.domainspecific.dsl.ruleengine.RuleSchema;
 
 import static org.domainspecific.dsl.ruleengine.RuleEngine.decisionSystem;
 import static org.domainspecific.dsl.ruleengine.RuleSchema.schema;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RuleEngineApp {
 
