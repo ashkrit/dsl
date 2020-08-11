@@ -1,7 +1,5 @@
 package org.domainspecific.dsl.bdd;
 
-import org.domainspecific.dsl.bdd.Specification.TestResult;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,9 +8,9 @@ import static java.util.stream.Collectors.groupingBy;
 
 public class SpecificationResult {
 
-    public static Set<TestResult> pass = new LinkedHashSet<>();
-    public static Set<TestResult> fail = new LinkedHashSet<>();
-    public static Set<TestResult> errors = new LinkedHashSet<>();
+    public static final Set<TestResult> pass = new LinkedHashSet<>();
+    public static final Set<TestResult> fail = new LinkedHashSet<>();
+    public static final Set<TestResult> errors = new LinkedHashSet<>();
 
     public static String passedTestCase() {
         return testSummary(pass.stream());
