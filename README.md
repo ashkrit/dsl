@@ -1,6 +1,8 @@
 # dsl
 Domain Specific Language - Contains example of internal DSL.
 
+Blog post - https://ashkrit.blogspot.com/2020/08/speak-language-of-domain.html explain about internal DSL
+
 ## State Machine DSL - Circuit Breaker
 ```
  StateMachine<String, String, String> cbMachine = machine("Circuit Breaker", machine -> {
