@@ -10,7 +10,7 @@ public class Specification {
         this.name = name;
     }
 
-    public static void describe(String name, Suite suite) {
+    public static void specification(String name, Suite suite) {
         Specification spec = new Specification(name);
         suite.apply(spec);
     }

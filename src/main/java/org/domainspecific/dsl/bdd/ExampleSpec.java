@@ -1,15 +1,13 @@
 package org.domainspecific.dsl.bdd;
 
-import java.io.FileNotFoundException;
 import java.util.EmptyStackException;
-import java.util.NoSuchElementException;
 import java.util.Stack;
 
-import static org.domainspecific.dsl.bdd.Specification.describe;
+import static org.domainspecific.dsl.bdd.Specification.specification;
 
 public class ExampleSpec {
     {
-        describe("A Stack", scenario -> {
+        specification("A Stack", scenario -> {
 
             scenario.should("Empty stack should have size 0", then -> {
                 Stack<String> stack = new Stack<>();
