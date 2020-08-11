@@ -19,8 +19,8 @@ public class FXRuleEngineCompilerApp {
 
         RuleEngine<FXTransaction> rules = pipeline.apply(context);
 
-        System.out.println(rules.name);
-        System.out.println(rules.constraints);
+        System.out.format("Rule Name %s \n", rules.name);
+        System.out.format("Rules %s \n", rules.constraints);
 
 
     }

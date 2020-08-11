@@ -50,7 +50,13 @@ public class InMemoryJavaCompiler {
     }
 
     private static CompilerOutput toCompilerOutput(Diagnostic<? extends JavaFileObject> x) {
-        return new CompilerOutput(x.getLineNumber(), x.getMessage(null), x.getSource().getName());
+
+        try {
+            String[] lines = x.getSource().getCharContent(false).toString().split("\r\n");
+            return new CompilerOutput(x.getLineNumber(), x.getMessage(null), lines[(int) x.getLineNumber() - 1], x.getSource().getName());
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
     static class InMemoryJavaCode extends SimpleJavaFileObject {
@@ -71,10 +77,12 @@ public class InMemoryJavaCompiler {
         public final long lineNumber;
         public final String message;
         public final String sourceFile;
+        public final String code;
 
-        CompilerOutput(long lineNumber, String message, String sourceFile) {
+        CompilerOutput(long lineNumber, String message, String code, String sourceFile) {
             this.lineNumber = lineNumber;
             this.message = message;
+            this.code = code;
             this.sourceFile = sourceFile;
         }
     }
