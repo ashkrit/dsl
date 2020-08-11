@@ -7,7 +7,7 @@ public class CompilationContext {
     public final String dsl;
 
     public String template;
-    public String newCode;
+    public String dslCode;
     public String generatedCode;
 
     public CompilationContext(String className, String dsl) {

@@ -37,7 +37,7 @@ public class RuleEnginePipeline {
 
     private static Function<CompilationContext, CompilationContext> loadDsl = context -> {
         try {
-            context.newCode = new String(Files.readAllBytes(Paths.get(context.dsl)));
+            context.dslCode = new String(Files.readAllBytes(Paths.get(context.dsl)));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
@@ -46,7 +46,7 @@ public class RuleEnginePipeline {
 
     private static Function<CompilationContext, CompilationContext> codeGeneration = context -> {
         String template = context.template;
-        template = template.replace("//CODE", "ds=" + context.newCode);
+        template = template.replace("//CODE", "ds=" + context.dslCode);
         template = template.replace("$REPLACE", context.generatedName);
         context.generatedCode = template;
         System.out.println(context.generatedCode);
