@@ -1,6 +1,6 @@
 package org.domainspecific.dsl.bdd;
 
-import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class Specification {
@@ -17,15 +17,13 @@ public class Specification {
 
     public void should(String name, Scenario scenario) {
         Matchers m = new Matchers(name, new SpecificationResult(), scenario);
-        String scenarioName = this.name + "." + name;
-
         try {
             scenario.apply(m);
-            SpecificationResult.pass.add(scenarioName);
+            SpecificationResult.pass.add(new TestResult(this.name, name, null, null));
         } catch (AssertionError e) {
-            SpecificationResult.fail.put(scenarioName, e);
+            SpecificationResult.fail.add(new TestResult(this.name, name, e, null));
         } catch (Exception e) {
-            SpecificationResult.errors.put(scenarioName, e);
+            SpecificationResult.errors.add(new TestResult(this.name, name, null, e));
         }
     }
 
@@ -83,6 +81,36 @@ public class Specification {
             if (!value.equals(expected)) {
                 throw new AssertionError(String.format("Expected %s but found %s", expected, value));
             }
+        }
+    }
+
+    public static class TestResult {
+        public final String spec;
+        public final String scenario;
+        public final Throwable fail;
+        public final Throwable error;
+
+        public TestResult(String spec, String scenario, AssertionError fail, Exception error) {
+            this.spec = spec;
+            this.scenario = scenario;
+            this.error = error;
+            this.fail = fail;
+        }
+
+        public String getScenario() {
+            return scenario;
+        }
+
+        public String getSpec() {
+            return spec;
+        }
+
+        public Optional<Throwable> getFail() {
+            return Optional.ofNullable(fail);
+        }
+
+        public Optional<Throwable> getError() {
+            return Optional.ofNullable(error);
         }
     }
 

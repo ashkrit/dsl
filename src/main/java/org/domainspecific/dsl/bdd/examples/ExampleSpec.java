@@ -1,4 +1,4 @@
-package org.domainspecific.dsl.bdd;
+package org.domainspecific.dsl.bdd.examples;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
@@ -33,6 +33,12 @@ public class ExampleSpec {
                 Stack<String> stack = new Stack<>();
                 stack.push("1");
                 stack.push("2");
+
+                then.value(stack.size()).shouldBe(3);
+            });
+
+            scenario.should("Simulate unhandled case", then -> {
+                Stack<String> stack = null;
 
                 then.value(stack.size()).shouldBe(3);
             });
