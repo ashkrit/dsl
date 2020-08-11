@@ -58,4 +58,9 @@ public class Constraint<T> {
     public void apply(T record) {
         consumers.stream().forEach(c -> c.accept(ruleName, record));
     }
+
+    @Override
+    public String toString() {
+        return this.ruleName;
+    }
 }

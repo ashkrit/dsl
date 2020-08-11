@@ -9,9 +9,9 @@ import java.util.List;
 
 public class RuleEngine<T> {
 
-    private final String name;
-    private final RuleSchema<T> schema;
-    private final List<Constraint<T>> constraints = new ArrayList<>();
+    public final String name;
+    public final RuleSchema<T> schema;
+    public final List<Constraint<T>> constraints = new ArrayList<>();
 
     public RuleEngine(String name, RuleSchema<T> schema) {
         this.name = name;
