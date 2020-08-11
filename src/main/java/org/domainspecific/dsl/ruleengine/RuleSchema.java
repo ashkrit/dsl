@@ -2,6 +2,7 @@ package org.domainspecific.dsl.ruleengine;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 public class RuleSchema<T> {
@@ -22,13 +23,17 @@ public class RuleSchema<T> {
         schema.put(name, f);
     }
 
-    private Function<T, Object> field(String field) {
+    public Function<T, Object> field(String field) {
         return schema.get(field);
     }
 
     public Object fieldValue(String field, T row) {
         if (row == null) return null;
         return field(field).apply(row);
+    }
+
+    public Set<String> fields() {
+        return schema.keySet();
     }
 
     public interface SchemaField<T> {

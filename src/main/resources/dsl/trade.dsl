@@ -22,4 +22,4 @@ decisionSystem("FX Transaction", tradeSchema, s -> {
                     }
             );
 
-        });
+});
