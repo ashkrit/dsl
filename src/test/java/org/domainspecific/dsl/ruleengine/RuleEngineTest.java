@@ -1,5 +1,6 @@
 package org.domainspecific.dsl.ruleengine;
 
+import org.domainspecific.dsl.main.ruleengine.FXTransaction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

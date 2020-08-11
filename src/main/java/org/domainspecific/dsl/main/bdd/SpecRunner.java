@@ -1,9 +1,6 @@
-package org.domainspecific.dsl.bdd.examples;
+package org.domainspecific.dsl.main.bdd;
 
 import org.domainspecific.dsl.bdd.SpecificationResult;
-import org.domainspecific.dsl.bdd.examples.ExampleSpec;
-
-import java.util.stream.Collectors;
 
 public class SpecRunner {
 

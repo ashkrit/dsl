@@ -1,4 +1,4 @@
-package org.domainspecific.dsl.trading;
+package org.domainspecific.dsl.main.trading;
 
 import org.domainspecific.dsl.trading.external.Parser;
 import org.domainspecific.dsl.trading.internal.Trading;

@@ -1,4 +1,4 @@
-package org.domainspecific.dsl.bdd.examples;
+package org.domainspecific.dsl.main.bdd;
 
 import java.util.EmptyStackException;
 import java.util.Stack;

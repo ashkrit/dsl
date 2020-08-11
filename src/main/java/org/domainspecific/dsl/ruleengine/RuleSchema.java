@@ -31,7 +31,7 @@ public class RuleSchema<T> {
         return field(field).apply(row);
     }
 
-    interface SchemaField<T> {
+    public interface SchemaField<T> {
         void apply(RuleSchema<T> r);
     }
 

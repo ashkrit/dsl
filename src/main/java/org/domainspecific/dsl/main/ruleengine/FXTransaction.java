@@ -1,4 +1,4 @@
-package org.domainspecific.dsl.ruleengine;
+package org.domainspecific.dsl.main.ruleengine;
 
 public class FXTransaction {
     final private String source;
