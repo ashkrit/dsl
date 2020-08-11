@@ -11,6 +11,7 @@ public class ExternalTradingApp {
         /*
         buy <<Unit>> <<StockSymbol>> stocks at <<Price>>
          */
+
         Parser p = new Parser(Parser.keyWords);
 
         Scanner scanner = new Scanner(System.in);

@@ -8,9 +8,6 @@ public class InternalTradingApp {
 
     public static void main(String[] args) {
 
-        /*
-         BUY <<Unit>> <<Stock>> at <<price>> ,
-         */
         newOrder(equity("IBM"), (order, ts) -> {
             order
                     .buy(100)
